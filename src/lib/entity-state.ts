@@ -472,7 +472,9 @@ export abstract class EntityState<T extends {}> {
 
     asArray(payload).forEach(entity => {
       const id = generateId(entity, state);
-      entity[this.idKey] = id;
+      if (entity[this.idKey] !== id) {
+        entity[this.idKey] = id;
+      }
       entities[id] = entity;
       if (!ids.includes(id)) {
         ids.push(id);
