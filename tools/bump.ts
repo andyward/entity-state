@@ -26,7 +26,8 @@ async function bump(): Promise<void> {
 
   const path = join(__dirname, '../src/package.json');
   const json = await getPackage(path);
-  json.version = inc(json.version, release);
+  json.version = inc(json.version, release, 'private');
+  console.log('version:', path, json);
   await writePackage(path, json);
 }
 
