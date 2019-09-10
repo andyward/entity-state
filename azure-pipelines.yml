@@ -18,5 +18,15 @@ steps:
 - script: |
     npm install -g @angular/cli
     npm install
-    ng build --prod
+    npm run build
+    npm run rollup
   displayName: 'npm install and build'
+
+- task: Npm@1
+  displayName: 'publish entity-state'
+  inputs:
+    command: publish
+    workingDir: 'dist/entity-state'
+    verbose: false
+    publishRegistry: useFeed
+    publishFeed: 'c2129247-9a68-4d9d-9031-026d9efebbc9'
